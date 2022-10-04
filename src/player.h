@@ -24,11 +24,7 @@ public:
     string get_division(){return(division);};
     int get_age(){return(age);};
 
-    get_player(get)
-
-
-
-
+    player mystery_player(){};
 
     //destructor
     ~player();
