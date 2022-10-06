@@ -6,9 +6,9 @@
 
 using namespace std;
 
-std::vector<std::vector<std::string>> fetch_csv(int difficulty){
+int main (){
 string fname;
-
+int difficulty =1;
 switch (difficulty)
 {
 case 1:
@@ -43,9 +43,18 @@ content.push_back(row);
 }
 }
 else
+
 cout<<"Could not open the file\n";
 
-
-return(content);
+ // PRINT 
+for(int i=0;i<content.size();i++)
+{
+for(int j=0;j<content[i].size();j++)
+{
+cout<<content[i][j]<<" ";
+}
+cout<<"\n";
 }
 
+return(0);
+}
