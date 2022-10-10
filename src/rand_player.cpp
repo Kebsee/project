@@ -95,7 +95,7 @@ int random = 1 + rand() % 496; // must be same as amount of players in chosen pl
 player Mystery = player(random);
 //Mystery.display_attributes();
 
-string pguess = "Draymond Green";
+string pguess = "Ja Morant";
 
 player guess = player(pguess);
 guess.display_attributes();
