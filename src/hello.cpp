@@ -13,15 +13,15 @@ string fname;
 switch (difficulty)
 {
 case 1:
-    fname = "/root/project-1/resources/superstars.csv";
+    fname = "../resources/superstars.csv";
     break;
 
 case 2:
-    fname = "/root/project-1/resources/starters.csv";
+    fname = "../resources/starters.csv";
     break;
 
 case 3:
-    fname = "/root/project-1/resources/allPlayers.csv";
+    fname = "../resources/allPlayers.csv";
     break;
 } 
 
@@ -134,12 +134,12 @@ srand ( time(NULL) );
 int random = 1 + rand() % 496; // must be same as amount of players in chosen player pool
 
 player Mystery = player(random);
-//Mystery.display_attributes();
+Mystery.display_attributes();
 
-string pguess = "Ja Morant";
+//string pguess = "Ja Morant";
 
-player guess = player(pguess);
-guess.display_attributes();
+//player guess = player(pguess);
+//guess.display_attributes();
 
 
 return 0;
