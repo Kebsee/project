@@ -1,3 +1,5 @@
+
+
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -5,26 +7,13 @@
 #include <sstream>
 #include <ctime>
 #include <iomanip>
+#include <player.h>
 
 using namespace std;
 extern std::vector<std::vector<std::string>> fetch_csv(int difficulty);
 
 
-class player {
-    public:
-    int pnum;
-	string name;
-	string team;
-	string conference;
-	string division;
-	int age;
-	string position;
-	int jersey;
-    int height;
-	int difficulty = 3;
-    // constructor which generates player based on number given (random nnumber)
-
-    player(int rand_player_num){
+    player::player(int rand_player_num){
         std::vector<std::vector<std::string>> content = fetch_csv(difficulty);
         stringstream num(content[rand_player_num][0]);
 	    num >> pnum;
@@ -42,7 +31,7 @@ class player {
     }
     
     // constructor which generates player based on name given.
-    player(string p_name){
+    player::player(string p_name){
 		std::vector<std::vector<std::string>> content = fetch_csv(difficulty);
 		stringstream num(content[0][0]);
 	    	num >> pnum;
@@ -79,27 +68,9 @@ class player {
 	}
 
 	// p_compare 
-    void display_attributes(){
+    void player::display_attributes(){
         cout << setw(21) << left << name << setw(5) << team << setw(12) << conference << setw(10) << division <<
     setw(5) << age << setw(9) << position << setw(7) << jersey << setw(8) << height << endl;
     }
-};
 
 
-
-int main (){
-
-srand ( time(NULL) );
-int random = 1 + rand() % 496; // must be same as amount of players in chosen player pool
-
-player Mystery = player(random);
-//Mystery.display_attributes();
-
-string pguess = "Draymond Green";
-
-player guess = player(pguess);
-guess.display_attributes();
-
-
-return 0;
-};
