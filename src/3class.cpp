@@ -25,7 +25,7 @@ class player : public pool {
         int height;
         int difficulty;
      public:
-    std::vector<std::vector<std::string>> fetch_csv(int difficulty){
+        std::vector<std::vector<std::string>> fetch_csv(int difficulty){
              string fname;
 
     switch (difficulty)
@@ -76,19 +76,6 @@ class player : public pool {
         cout << setw(21) << left << name << setw(5) << team << setw(12) << conference << setw(10) << division <<
     setw(5) << age << setw(9) << position << setw(7) << jersey << setw(8) << height << endl;
     }
-
-    
-
-        int get_pnum(){return(pnum);};
-	    string get_name(){return(name);};
-	    string get_team(){return(team);};
-	    string get_conference(){return(conference);};
-	    string get_division(){return(division);};
-	    int get_age(){return(age);};
-	    string get_position(){return(position);};
-	    int get_jersey(){return(jersey);};
-        int get_height(){return(height);};
-        int get_difficulty(){return(difficulty);};
 
 };
 
@@ -169,43 +156,81 @@ class guess : public player {
             }
         return(false);
     }
-        
-        
-        
+          
 };
 
 int main(){
-std::vector<std::vector<std::string>> guess_vector;
+srand ( time(NULL) );
 
-int difficulty = 1;
 
-    for (int i = 0; i < 10; i++){
-        mystery myst;
-    myst.function(difficulty);
-    myst.generate_player(i);
-    myst.display_attributes();
-            //guess_vector[i][0]
-            // guess_vector[i][1]=myst.get_name();
-            // guess_vector[i][2]=myst.get_team();
-            // guess_vector[i][3]=myst.get_conference();
-            // guess_vector[i][4]=myst.get_division();
-            // guess_vector[i][5]=myst.get_pnum();
-            // guess_vector[i][6]=myst.get_pnum();
-            // guess_vector[i][7]=myst.get_pnum();
-            // guess_vector[i][8]=myst.get_pnum();
-
-            // cout guess vector
-            // for (int p = 0; p < i;p++){
-            //     for (int g = 0; g < 8; g++)
-            //     {
-            //         cout << guess_vector[p][g];
-            //         cout << "  ";
-            //     }
-            //     cout << endl;
-            // }
+// Determine difficulty
+    int difficulty;
+    cout << "Please enter the difficulty you would like to play \n 1 (easy), 2 (medium), 3 (hard) : ";
+    cin >> difficulty;
+    cout << endl;
+    
+        while (difficulty != 1 && difficulty != 2 && difficulty != 3 ){
+        cout << "Please enter a valid number!! : ";
+        cin >> difficulty;
     }
-return 0;
+
+    // Generate random number based on difficulty 
+    int csv_length;
+        switch (difficulty)
+        {
+        case 1:
+        csv_length = 51;
+            break;
+        
+        case 2:
+        csv_length = 151;
+            break;
+
+            case 3:
+        csv_length = 497;
+            break;
+        }
+
+    int random_num = 1 + rand() % csv_length; // must be same as amount of players in chosen player pool
+
+    // generate mystery player
+    mystery myst;
+    myst.function(difficulty);
+    myst.generate_player(random_num);
+    myst.display_attributes();
+
+    
+    bool win = false;
+    int max_guess=3;
+    int guess_so_far =0;
+
+    // GAME LOOP
+    while(win==false&&guess_so_far<max_guess){
+    string user_guess;
+    cout << "Please enter guess #" << guess_so_far+1<< ": ";
+    cin >> user_guess;
+    guess user;
+    user.find_player(user_guess);
+
+    while (user.find_player(user_guess)==false)
+    {
+        cout << "invalid or mispelt player try again :";
+        cin >> user_guess;
+    }
+
+    user.find_player(user_guess);
+
+    
+
+    guess_so_far++;
+    //add guess to vector 
+    }
+
+
+    // guess one;
+    // one.function(3);
+    // one.find_player("Ja Morant");
+    // one.display_attributes();
+    // return 0;
 }
 
-
- 

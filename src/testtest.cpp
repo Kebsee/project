@@ -1,58 +1,32 @@
 #include <iostream>
-#include <fstream>
-#include <string>
-#include <vector>
-#include <sstream>
-#include <ctime>
-#include <iomanip>
-
 using namespace std;
-extern std::vector<std::vector<std::string>> fetch_csv(int difficulty);
-int main (){
-
-
-    int num;
-	string name;
-	string team;
-	string conference;
-	string division;
-	int age;
-	string position;
-	int jersey;
-    int height;
-
-    
-    // constructor which generates player based on name given.
-
-    std::vector<std::vector<std::string>> content = fetch_csv(1);
-    int rand_player_num=49;
-    
-    stringstream p_num(content[rand_player_num][0]);
-	p_num >> num;
-	name = content[rand_player_num][1];
-	team = content[rand_player_num][2];
-	conference = content[rand_player_num][3];
-	division = content[rand_player_num][4];
-	stringstream p_age(content[rand_player_num][5]);
-	p_age >> age;
-	position = content[rand_player_num][6];
-	stringstream pjersey(content[rand_player_num][7]);
-	pjersey >> jersey;
-	stringstream pheight(content[rand_player_num][8]);
-	pheight >> height;
+int  main()
+{
+	/*
+    char normal[]={0x1b,'[','0',';','3','9','m',0};
+    char black[]={0x1b,'[','0',';','3','0','m',0};
+    char red[]={0x1b,'[','0',';','3','1','m',0};
+    char green[]={0x1b,'[','0',';','3', '2','m',0};
+    char yellow[]={0x1b,'[','0',';','3', '3', 'm',0};
+    char blue[]={0x1b,'[','0',';','3','4','m',0};
+    char cyan[]={0x1b,'[','0',';','3','6','m',0};
+    char lgray[]={0x1b,'[','0',';','3','7','m',0};
+    char dgray[]={0x1b,'[','0',';','3','8','m',0};
+    char Bred[]={0x1b,'[','1',';','3','1','m',0};
+    //for bold colors, just change the 0 after the [ to a 1
+    //for underlined colors, just change the 0 after the [ to a 4
+    cout<<"This text is "<<black<<"Black "<<red<<"Red ";
+    cout<<green<<"Green "<<yellow<<"Yellow "<<blue<<"Blue\n";
+    cout<<Upurple<<"Underlined Purple "<<cyan<<"Cyan ";
+    cout<<lgray<<"Light Gray "<<dgray<<"Dark Gray ";
+    cout<<Bred<<"and Bold Red."<<normal<<"\n";*/
+	char Bred[]={0x1b,'[','1',';','3','1','m',0};
+    char normal[]={0x1b,'[','0',';','3','9','m',0};
+    char Upurple[]={0x1b,'[','4',';','3','5','m',0};
+    cout<<Upurple;
+	
 
 
 
-
-
-
-
-      cout << setw(21) << left << name << setw(5) << team << setw(12) << conference << setw(10) << division <<
-    setw(5) << age << setw(9) << position << setw(7) << jersey << setw(8) << height << endl;
-
-
-
-
-
-return 0;
-};
+    return 0;
+}

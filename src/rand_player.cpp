@@ -93,8 +93,8 @@ srand ( time(NULL) );
 int random = 1 + rand() % 496; // must be same as amount of players in chosen player pool
 
 player Mystery = player(random);
-//Mystery.display_attributes();
-
+Mystery.display_attributes();
+cout << endl;
 string pguess = "Ja Morant";
 
 player guess = player(pguess);
