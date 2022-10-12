@@ -13,7 +13,7 @@ virtual std::vector<std::vector<std::string>> fetch_csv(int difficulty) =0;
 };
 
 class player : public pool {
-     protected:
+     public:
         int pnum;
 	    string name;
 	    string team;
@@ -24,7 +24,7 @@ class player : public pool {
 	    int jersey;
         int height;
         int difficulty;
-     public:
+     
         std::vector<std::vector<std::string>> fetch_csv(int difficulty){
              string fname;
 
@@ -77,6 +77,18 @@ class player : public pool {
     setw(5) << age << setw(9) << position << setw(7) << jersey << setw(8) << height << endl;
     }
 
+
+        int get_pnum(){return(pnum);};
+	    string get_name(){return(name);};
+	    string get_team(){return(team);};
+	    string get_conference(){return(conference);};
+	    string get_division(){return(division);};
+	    int get_age(){return(age);};
+	    string get_position(){return(position);};
+	    int get_jersey(){return(jersey);};
+        int get_height(){return(height);};
+        int get_difficulty(){return(difficulty);};
+
 };
 
 
@@ -86,7 +98,8 @@ class mystery : public player {
     int difficulty;
         mystery(){};
         void function(int diff){difficulty = diff;};
-        
+
+        // INSERT DESCRIPTION HERE 
         void generate_player(int rand_player_num){
 	    std::vector<std::vector<std::string>> content = fetch_csv(difficulty);
         stringstream num(content[rand_player_num][0]);
@@ -161,6 +174,10 @@ class guess : public player {
 
 int main(){
 srand ( time(NULL) );
+// initialise colours 
+char normal[]={0x1b,'[','0',';','3','9','m',0};
+char green[]={0x1b,'[','0',';','3', '2','m',0};
+char underline[]={0x1b,'[','4',';','3','9','m',0};
 
 
 // Determine difficulty
@@ -197,34 +214,112 @@ srand ( time(NULL) );
     mystery myst;
     myst.function(difficulty);
     myst.generate_player(random_num);
-    myst.display_attributes();
+    
 
     
     bool win = false;
-    int max_guess=3;
+    int max_guess=5;
     int guess_so_far =0;
 
-    // GAME LOOP
-    while(win==false&&guess_so_far<max_guess){
-    string user_guess;
-    cout << "Please enter guess #" << guess_so_far+1<< ": ";
-    cin >> user_guess;
-    guess user;
-    user.find_player(user_guess);
+                // GAME LOOP
+                while(win==false&&guess_so_far<max_guess){
+                string user_guess;
+                cout << "Please enter guess #" << guess_so_far+1<< ": ";
+                cin >> user_guess;
+                guess user;
+                user.difficulty=1;
+                user.find_player(user_guess);
 
-    while (user.find_player(user_guess)==false)
-    {
-        cout << "invalid or mispelt player try again :";
-        cin >> user_guess;
-    }
+                while (user.find_player(user_guess)==false)
+                {
+                    cout << "invalid or mispelt player try again :";
+                    cin >> user_guess;
+                }
 
-    user.find_player(user_guess);
+                user.find_player(user_guess);
+                
+                
+                // //COMPARE SHIT 
+                // string compare_name;
+                // string compare_team;
+                // string compare_conference;
+                // string compare_division;
+                // int compare_age;
+                // string compare_position;
+                // int compare_jersey;
+                // int compare_height;
+                //         if((user.name) == (myst.name)){
+                //             compare_name = user.name; 
+                //             cout << green << compare_name << endl;
+                //             }else{
+                //                 cout << normal << user.name << endl;
+                //             }
+                //         //
+                //         //Team
+                //         if(user.team == myst.team){
+                //             compare_team = user.team; 
+                //             cout << green << compare_team << endl;
+                //             }else{
+                //                 cout << normal << user.team << endl;
+                //             }
+                //         //
+                //         //Conference
+                //         if(user.conference == myst.conference){
+                //             compare_conference = user.conference; 
+                //             cout << green << compare_conference << endl;
+                //             }else{
+                //                 cout << normal << user.conference << endl;
+                //             }
+                //         //
+                //         //Division
+                //         if(user.division == myst.division){
+                //             compare_division = user.division; 
+                //             cout << green << compare_division << endl;
+                //             }else{
+                //                 cout << normal << user.division << endl;
+                //             }
+                //         //
+                //         //Age
+                //         if(user.age == myst.age){
+                //             compare_age = user.age; 
+                //             cout << green << compare_age << endl;
+                //             }else{
+                //                 cout << normal << user.age << endl;
+                //             }
+                //         //
+                //         //Position
+                //         if(user.position == myst.position){
+                //             compare_position = user.position; 
+                //             cout << green << compare_position << endl;
+                //             }else{
+                //                 cout << normal << user.position << endl;
+                //             }
+                //         //
+                //         //Jersey
+                //         if(user.jersey == myst.jersey){
+                //             compare_jersey = user.jersey; 
+                //             cout << green << compare_jersey << endl;
+                //             }else{
+                //                 cout << normal << user.jersey << endl;
+                //             }
+                //         //
+                //         //Height
+                //         if(user.height == myst.height){
+                //             compare_height = user.height; 
+                //             cout << green << compare_height << endl;
+                //             }else{
+                //                 cout << normal << user.height << endl;
+                //             }
+                //         //
 
-    
+               
+            
+                
 
-    guess_so_far++;
-    //add guess to vector 
-    }
+
+                guess_so_far++;
+                //add guess to vector 
+                }
 
 
     // guess one;

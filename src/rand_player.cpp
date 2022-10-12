@@ -94,12 +94,7 @@ int random = 1 + rand() % 50; // must be same as amount of players in chosen pla
 
 player Mystery = player(random);
 Mystery.display_attributes();
-<<<<<<< HEAD
 cout << endl;
-=======
-cout << Mystery.age << endl;
-
->>>>>>> e8d40a4df08f9a712c745ef7289411129e1de148
 string pguess = "Ja Morant";
 
 player guess = player(pguess);
