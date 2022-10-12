@@ -21,7 +21,7 @@ class player {
 	string position;
 	int jersey;
     int height;
-	int difficulty = 3;
+	int difficulty = 1;
     // constructor which generates player based on number given (random nnumber)
 
     player(int rand_player_num){
@@ -58,7 +58,7 @@ class player {
 	    	stringstream pheight(content[0][8]);
 	    	pheight >> height;
     
-    	for (int i = 0; i < 496; i++){
+    	for (int i = 0; i < 50; i++){
 			if(content[i][1]==p_name){
 			stringstream num(content[i][0]);
 	    	num >> pnum;
@@ -90,10 +90,11 @@ class player {
 int main (){
 
 srand ( time(NULL) );
-int random = 1 + rand() % 496; // must be same as amount of players in chosen player pool
+int random = 1 + rand() % 50; // must be same as amount of players in chosen player pool
 
 player Mystery = player(random);
-//Mystery.display_attributes();
+Mystery.display_attributes();
+cout << Mystery.age << endl;
 
 string pguess = "Ja Morant";
 
