@@ -175,35 +175,33 @@ class guess : public player {
 };
 
 int main(){
-std::vector<std::vector<std::string>> guess_vector;
+int row = 5;
+int col = 8;
+
+std::vector<std::vector<std::string>> guess_vector ( row , vector<std::string> (col));
 
 int difficulty = 1;
-
-    for (int i = 0; i < 10; i++){
-        mystery myst;
+mystery myst;
     myst.function(difficulty);
-    myst.generate_player(i);
-    myst.display_attributes();
-            //guess_vector[i][0]
-            // guess_vector[i][1]=myst.get_name();
-            // guess_vector[i][2]=myst.get_team();
-            // guess_vector[i][3]=myst.get_conference();
-            // guess_vector[i][4]=myst.get_division();
-            // guess_vector[i][5]=myst.get_pnum();
-            // guess_vector[i][6]=myst.get_pnum();
-            // guess_vector[i][7]=myst.get_pnum();
-            // guess_vector[i][8]=myst.get_pnum();
+    myst.generate_player(1);
 
-            // cout guess vector
-            // for (int p = 0; p < i;p++){
-            //     for (int g = 0; g < 8; g++)
-            //     {
-            //         cout << guess_vector[p][g];
-            //         cout << "  ";
-            //     }
-            //     cout << endl;
-            // }
-    }
+
+
+
+
+            guess_vector[0][0]=myst.get_name();
+            guess_vector[i][2]=myst.get_team();
+            guess_vector[i][3]=myst.get_conference();
+            guess_vector[i][4]=myst.get_division();
+        //     guess_vector[i][5]=myst.get_age();
+        //     guess_vector[i][6]=myst.get_position();
+        //     guess_vector[i][7]=myst.get_jersey();
+        //     guess_vector[i][8]=myst.get_height();
+
+        for (int i = 0; i <8; i++){
+            cout << guess_vector[0][i];
+        }
+    
 return 0;
 }
 
