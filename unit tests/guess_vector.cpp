@@ -13,7 +13,7 @@ virtual std::vector<std::vector<std::string>> fetch_csv(int difficulty) =0;
 };
 
 class player : public pool {
-     protected:
+     public:
         int pnum;
 	    string name;
 	    string team;
@@ -24,7 +24,7 @@ class player : public pool {
 	    int jersey;
         int height;
         int difficulty;
-     public:
+
     std::vector<std::vector<std::string>> fetch_csv(int difficulty){
              string fname;
 
@@ -116,6 +116,11 @@ class mystery : public player {
 	    stringstream pheight(content[rand_player_num][8]);
 	    pheight >> height;
     }
+
+    std::vector<std::vector<std::string>> return_content(){
+    std::vector<std::vector<std::string>> content = fetch_csv(difficulty);
+    return(content);
+    }
           
 };
 
@@ -175,33 +180,25 @@ class guess : public player {
 };
 
 int main(){
-int row = 5;
-int col = 8;
-
-std::vector<std::vector<std::string>> guess_vector ( row , vector<std::string> (col));
-
-int difficulty = 1;
-mystery myst;
-    myst.function(difficulty);
-    myst.generate_player(1);
 
 
-
-
-
-            guess_vector[0][0]=myst.get_name();
-            guess_vector[i][2]=myst.get_team();
-            guess_vector[i][3]=myst.get_conference();
-            guess_vector[i][4]=myst.get_division();
-        //     guess_vector[i][5]=myst.get_age();
-        //     guess_vector[i][6]=myst.get_position();
-        //     guess_vector[i][7]=myst.get_jersey();
-        //     guess_vector[i][8]=myst.get_height();
-
-        for (int i = 0; i <8; i++){
-            cout << guess_vector[0][i];
-        }
+int difficulty = 3;
+                mystery myst;
+                myst.function(difficulty);
+                std::vector<std::vector<std::string>> content = myst.return_content();
     
+
+        //     for(int i = 0; i < 10; i++){
+        //     mystery myst;
+        //     myst.function(difficulty);
+        //     myst.generate_player(1);
+        //     int pnum = myst.get_pnum();
+        //     // myst.display_attributes();
+        // // }
+            guess user;
+            user.function(difficulty);
+            user.find_player("Draymond Green");
+            cout << user.age;            
 return 0;
 }
 
