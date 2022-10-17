@@ -346,7 +346,7 @@ if(rules == 1){
         cout << normal << setw(9) << " ";
     }
     
-    int rem;
+        int rem;
         int feet;
 
         feet = one.height/12;
