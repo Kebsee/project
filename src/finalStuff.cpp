@@ -8,6 +8,25 @@
 #include <iomanip>
 using namespace std;
 
+class Game {
+    public:
+        Game(){
+            cout << "NBA wordle is a game where the aim is to guess a mystery NBA player in 5 guesses." << endl;
+            cout << "Every guess you make will display that players attributes, and any corresponding matches" << endl;
+            cout << "with the mystery players will show up in green. The ^ and v arrows will indicate whether" << endl;
+            cout << "the number of the mystery players attribute is higher or lower. The terminal will display all " << endl;
+            cout << "previous guesses and you will use the previous guesses to work out the mystery player." << endl;
+            cout << " There are 3 difficulty levels, easy(top 50 NBA player), medium(All NBA starters) and" << endl;
+            cout << "hard (every NBA player) which you will select before starting. Each time playing will " << endl;
+            cout << "create a new mystery player. When making a guess, you must put their full name, please" << endl;
+            cout << "use google to check the players spelling if the guess is not being recognised! Good luck!" << endl;
+            cout << "Lets get started!" << endl << endl;
+        }
+        Game(string begin){
+            cout << "Lets begin!" << endl << endl;
+        }
+};
+
 class pool {
 virtual std::vector<std::vector<std::string>> fetch_csv(int difficulty) =0;
 };
@@ -172,6 +191,7 @@ class guess : public player {
           
 };
 
+
 int main(){
 srand ( time(NULL) );
 // initialise colours 
@@ -180,14 +200,41 @@ char green[]={0x1b,'[','0',';','3', '2','m',0};
 char underline[]={0x1b,'[','4',';','3','9','m',0};
 
 
+// begin game
+
+int rules;
+cout << "Welcome to NBA Wordle!" << endl;
+cout << "Press 1 to see the rules, otherwise press any key to play the game." << endl;
+cin >> rules;
+
+// rules!
+if(rules == 1){
+    cout << "NBA wordle is a game where the aim is to guess a mystery NBA player in 5 guesses." << endl;
+    cout << "Every guess you make will display that players attributes, and any corresponding matches" << endl;
+    cout << "with the mystery players will show up in green. The ^ and v arrows will indicate whether" << endl;
+    cout << "the number of the mystery players attribute is higher or lower. The terminal will display all " << endl;
+    cout << "previous guesses and you will use the previous guesses to work out the mystery player." << endl;
+    cout << " There are 3 difficulty levels, easy(top 50 NBA player), medium(All NBA starters) and" << endl;
+    cout << "hard (every NBA player) which you will select before starting. Each time playing will " << endl;
+    cout << "create a new mystery player. When making a guess, you must put their full name, please" << endl;
+    cout << "use google to check the players spelling if the guess is not being recognised! Good luck!" << endl;
+    cout << "Lets get started!" << endl << endl;
+    }else{
+    cout << "Lets get started!" << endl;
+    }
+     
+
 // Determine difficulty
     int difficulty;
-    cout << "Please enter the difficulty you would like to play \n 1 (easy), 2 (medium), 3 (hard) : ";
+    cout << "Please choose your difficulty number, from the following 3 options: " << endl;
+    cout << "\t1. Easy - NBA superstars, the top 50 players in the league." << endl;
+    cout << "\t2. Medium - NBA starters, every starter from each of the 30 teams" << endl;
+    cout << "\t3. Hard - All NBA players - Every NBA player currently on a roster" << endl;
     cin >> difficulty;
     cout << endl;
     
         while (difficulty != 1 && difficulty != 2 && difficulty != 3 ){
-        cout << "Please enter a valid number!! : ";
+        cout << "Please enter a valid number: ";
         cin >> difficulty;
     }
 
@@ -214,59 +261,30 @@ char underline[]={0x1b,'[','4',';','3','9','m',0};
     mystery myst;
     myst.function(difficulty);
     myst.generate_player(random_num);
-    myst.display_attributes();
-    cout << myst.age << endl;
-    
 
-    
-    // bool win = false;
-    // int max_guess=5;
-    // int guess_so_far =0;
+    bool win = false;
+    const int max_guess = 5;
+    int guess_so_far = 0;
 
-    //             // GAME LOOP
-    //             while(win==false&&guess_so_far<max_guess){
-    //             string user_guess;
-    //             cout << "Please enter guess #" << guess_so_far+1<< ": ";
-    //             cin >> user_guess;
-    //             guess user;
-    //             user.difficulty=1;
-    //             user.find_player(user_guess);
-
-    //             while (user.find_player(user_guess)==false)
-    //             {
-    //                 cout << "invalid or mispelt player try again :";
-    //                 cin >> user_guess;
-    //             }
-
-    //             user.find_player(user_guess);
-                
-                
-                // //COMPARE SHIT 
-                // string compare_name;
-                // string compare_team;
-                // string compare_conference;
-                // string compare_division;
-                // int compare_age;
-                // string compare_position;
-                // int compare_jersey;
-                // int compare_height;
-
-
+    while(win==false&&guess_so_far<max_guess){
     guess one;
-    string guess1;
-    cout << "Please choose a player: ";
-    cin.ignore();
-    getline(cin, guess1);
-    cout << guess1 << endl;
-    // one.function(3);
-    one.find_player(guess1);
-    one.display_attributes();
+    string user_guess;
+    cout << "Please choose guess #" << guess_so_far + 1<< ":";
+    getline(cin, user_guess);
+    one.function(3);
+    one.find_player(user_guess);
 
-    cout << setw(15) << left << "Guess No." << setw(23) << "NAME" << setw(7) << "TEAM" << setw(14) << "CONFERENCE" << setw(12) << "DIVISION" <<
+    while(one.find_player(user_guess) == false){
+        cout << "Invalid Player, try again!" << endl;
+        getline(cin, user_guess);
+        one.find_player(user_guess);
+    }
+
+    cout << setw(15) << left << "" << setw(23) << "NAME" << setw(7) << "TEAM" << setw(14) << "CONFERENCE" << setw(12) << "DIVISION" <<
     setw(7) << "AGE" << setw(11) << "POSITION" << setw(9) << "JERSEY" << setw(10) << "HEIGHT" << endl;
     cout << "--------------------------------------------------------------------------------------------------------" << endl;
 
-    cout << setw(15) << left << "Guess #1";
+    cout << setw(7) << left << "Guess #" << (guess_so_far + 1) << setw(7) << ":";
     if (one.name == myst.name){
         string compareName;
         compareName = one.name;
@@ -296,9 +314,15 @@ char underline[]={0x1b,'[','4',';','3','9','m',0};
     if (one.age == myst.age){
         int compareAge;
         compareAge = one.age;
-        cout << green << setw(7) << left << compareAge;
-        }else{ cout << normal << setw(7) << left << one.age;
+        cout << green << setw(2) << left << compareAge;
+        }else{ cout << normal << setw(2) << left << one.age;
     }
+
+    if (one.age < myst.age){
+        cout << normal << setw(5) << " ^";
+    }else if(one.age > myst.age){
+        cout << normal << setw(5) << " v";
+    }else cout << normal << setw(5) << " ";
 
     if (one.position == myst.position){
         string comparePos;
@@ -309,16 +333,44 @@ char underline[]={0x1b,'[','4',';','3','9','m',0};
     if (one.jersey == myst.jersey){
         int compareJersey;
         compareJersey = one.jersey;
-        cout << green << setw(9) << left << compareJersey;
-        }else{ cout << normal << setw(9) << left << one.jersey;
+        cout << green << setw(2) << left << compareJersey;
+        }else{ cout << normal << setw(2) << left << one.jersey;
     }
 
+    if (one.jersey < myst.jersey){
+        cout << normal << setw(7) << " ^";
+    }else if(one.jersey > myst.jersey){
+        cout << normal << setw(7) << " v";
+    }else{
+        cout << normal << setw(7) << " ";
+    }
+    
     if(one.height == myst.height){
         int compareHeight;
         compareHeight = one.height;
-        cout << green << setw(10) << left << compareHeight << endl << endl;
-        }else{ cout << normal << setw(10) << left << one.height << endl << endl;
+        cout << green << setw(2) << left << compareHeight;
+        }else{ cout << normal << setw(2) << left << one.height << normal;
     }
-    // return 0;
-}
 
+    if (one.height < myst.height){
+        cout << normal << setw(8) << " ^"  << endl << endl;
+    }else if(one.height > myst.height){
+        cout << normal << setw(8) << " v"  << endl << endl;
+    } else{
+        cout << normal << setw(8) << " " << endl << endl;
+    }
+
+    guess_so_far++;
+    if(one.name == myst.name){
+        win = true;
+        cout << "Congratulations, You solved it in " << guess_so_far << " guesses!" << endl;
+    }
+    
+    }
+    if(win == false){
+        cout << "GAME OVER!" << endl;
+        cout << "Unfortunately you have lost! Maybe try an easier difficulty or learn " << endl;
+        cout << "more about NBA players!" << endl;
+    }
+
+}
