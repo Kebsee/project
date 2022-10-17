@@ -92,8 +92,11 @@ class player : public pool {
         player(){};
 
         void display_attributes(){
-        cout << setw(21) << left << name << setw(5) << team << setw(12) << conference << setw(10) << division <<
-        setw(5) << age << setw(9) << position << setw(7) << jersey << setw(8) << height << endl;
+        cout << setw(17) << left << "" << setw(23) << "NAME" << setw(7) << "TEAM" << setw(14) << "CONFERENCE" << setw(12) << "DIVISION" <<
+        setw(7) << "AGE" << setw(11) << "POSITION" << setw(9) << "JERSEY" << setw(10) << "HEIGHT" << endl;
+        cout << "----------------------------------------------------------------------------------------------------------" << endl;
+        cout << setw(17) << left << "Mystery Player:" << setw(23) << left << name << setw(7) << team << setw(14) << conference << setw(12) << division <<
+        setw(7) << age << setw(11) << position << setw(9) << jersey << setw(10) << height << endl;
     }
 
 
@@ -323,7 +326,7 @@ if(rules == 1){
         cout << normal << setw(7) << "↑";
     }else if(one.age > myst.age){
         cout << normal << setw(7) << "↓";
-    }else cout << normal << setw(7) << " ";
+    }else cout << normal << setw(5) << "";
 
     if (one.position == myst.position){
         string comparePos;
@@ -343,22 +346,22 @@ if(rules == 1){
     }else if(one.jersey > myst.jersey){
         cout << normal << setw(9) << "↓";
     }else{
-        cout << normal << setw(9) << " ";
+        cout << normal << setw(7) << " ";
     }
     
-        int rem;
-        int feet;
+    int rem;
+    int feet;
 
-        feet = one.height/12;
-        rem = one.height%12;
+    feet = one.height/12;
+    rem = one.height%12;
     
     if(one.height == myst.height){
         int compareHeight;
         compareHeight = one.height;
         
-    cout << feet << "'" << rem << "\"" << endl;
-        cout << green << setw(2) << left << feet << "'" << rem << "\"";
-        }else{ cout << normal << setw(2) << left << feet << "'" << rem << "\"" << normal;
+    // cout << feet << "'" << rem << "\"" << endl;
+        cout << green << setw(1) << left << feet << "'" << rem << "\"";
+        }else{ cout << normal << setw(1) << left << feet << "'" << rem << "\"" << normal;
     }
 
     
@@ -367,7 +370,7 @@ if(rules == 1){
     }else if(one.height > myst.height){
         cout << normal << setw(10) << "↓"  << endl << endl;
     } else{
-        cout << normal << setw(10) << " " << endl << endl;
+        cout << normal << setw(8) << " " << endl << endl;
     }
 
     guess_so_far++;
