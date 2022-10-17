@@ -346,11 +346,19 @@ if(rules == 1){
         cout << normal << setw(9) << " ";
     }
     
+    int rem;
+        int feet;
+
+        feet = one.height/12;
+        rem = one.height%12;
+    
     if(one.height == myst.height){
         int compareHeight;
         compareHeight = one.height;
-        cout << green << setw(2) << left << compareHeight;
-        }else{ cout << normal << setw(2) << left << one.height << normal;
+        
+    cout << feet << "'" << rem << "\"" << endl;
+        cout << green << setw(2) << left << feet << "'" << rem << "\"";
+        }else{ cout << normal << setw(2) << left << feet << "'" << rem << "\"" << normal;
     }
 
     if (one.height < myst.height){
