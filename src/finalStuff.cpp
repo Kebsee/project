@@ -265,6 +265,7 @@ if(rules == 1){
     bool win = false;
     const int max_guess = 5;
     int guess_so_far = 0;
+    cin.ignore();
 
     while(win==false&&guess_so_far<max_guess){
     guess one;
@@ -319,10 +320,10 @@ if(rules == 1){
     }
 
     if (one.age < myst.age){
-        cout << normal << setw(5) << " ^";
+        cout << normal << setw(7) << "↑";
     }else if(one.age > myst.age){
-        cout << normal << setw(5) << " v";
-    }else cout << normal << setw(5) << " ";
+        cout << normal << setw(7) << "↓";
+    }else cout << normal << setw(7) << " ";
 
     if (one.position == myst.position){
         string comparePos;
@@ -338,11 +339,11 @@ if(rules == 1){
     }
 
     if (one.jersey < myst.jersey){
-        cout << normal << setw(7) << " ^";
+        cout << normal << setw(9) << "↑";
     }else if(one.jersey > myst.jersey){
-        cout << normal << setw(7) << " v";
+        cout << normal << setw(9) << "↓";
     }else{
-        cout << normal << setw(7) << " ";
+        cout << normal << setw(9) << " ";
     }
     
     if(one.height == myst.height){
@@ -353,11 +354,11 @@ if(rules == 1){
     }
 
     if (one.height < myst.height){
-        cout << normal << setw(8) << " ^"  << endl << endl;
+        cout << normal << setw(10) << "↑"  << endl << endl;
     }else if(one.height > myst.height){
-        cout << normal << setw(8) << " v"  << endl << endl;
+        cout << normal << setw(10) << "↓"  << endl << endl;
     } else{
-        cout << normal << setw(8) << " " << endl << endl;
+        cout << normal << setw(10) << " " << endl << endl;
     }
 
     guess_so_far++;
