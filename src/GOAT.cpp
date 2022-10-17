@@ -102,7 +102,7 @@ class player : public pool {
         setw(7) << "AGE" << setw(11) << "POSITION" << setw(9) << "JERSEY" << setw(10) << "HEIGHT" << endl;
         cout << "----------------------------------------------------------------------------------------------------------" << endl;
         cout << setw(17) << left << "Mystery Player:" << setw(23) << left << name << setw(7) << team << setw(14) << conference << setw(12) << division <<
-        setw(7) << age << setw(11) << position << setw(9) << jersey << setw(10) << feet << setw(1) << "'" << rem << "\"" << endl;
+        setw(7) << age << setw(11) << position << setw(9) << jersey << setw(1) <<feet << setw(1) << "'" << rem << "\"" << endl;
 
         //cout  << setw(1) << left << feet << "'" << rem << "\"";
     }
