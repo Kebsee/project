@@ -361,6 +361,7 @@ if(rules == 1){
         }else{ cout << normal << setw(2) << left << feet << "'" << rem << "\"" << normal;
     }
 
+    
     if (one.height < myst.height){
         cout << normal << setw(10) << "↑"  << endl << endl;
     }else if(one.height > myst.height){
