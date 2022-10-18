@@ -14,10 +14,15 @@ using namespace std;
 
 class Guess : public Player {          
 public:
+    // Initialise difficulty
     string difficulty;
 
-    Guess(){};
-        
+    // Default Constructor
+    Guess(){
+        name = "";
+    };
+    
+    // function that sorts the difficulty
     void function(string diff){difficulty = diff;};
         
     //if player is found then returns true and adds his attributes to objects, 
@@ -33,6 +38,8 @@ public:
 
         std::vector<std::vector<std::string>> content = fetch_csv(difficulty);
         
+        // Sorts through the content vector and assigns the attributes to 
+        // the player guess
         for (int i = 0; i <csv_length; i++){
             if(content[i][1]==user_guess){
                 stringstream num(content[i][0]);

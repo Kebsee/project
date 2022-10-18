@@ -13,14 +13,23 @@
 using namespace std;
 
 class Mystery : public Player {          
+
 public:
+	// Initialise the difficulty string
     string difficulty;
-    Mystery(){};
+
+	//Default constructor
+    Mystery(){
+		difficulty = "";
+	};
+
+	//Function that takes in the selected difficulty and assigns it to variable difficulty
     void function(string diff){
         difficulty = diff;
     };
 
-    // INSERT DESCRIPTION HERE 
+    // Function that generates a random player from a given integer
+	// Puts the random players attributes into the content vector
     void generate_player(int rand_player_num){
 	    std::vector<std::vector<std::string>> content = fetch_csv(difficulty);
         stringstream num(content[rand_player_num][0]);
