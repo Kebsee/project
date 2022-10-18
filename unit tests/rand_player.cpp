@@ -89,17 +89,37 @@ class player {
 
 int main (){
 
+
+
+char normal[]={0x1b,'[','0',';','3','9','m',0};
+char green[]={0x1b,'[','0',';','3', '2','m',0};
+char underline[]={0x1b,'[','4',';','3','9','m',0};
+
+string compare_name;
+
 srand ( time(NULL) );
 int random = 1 + rand() % 496; // must be same as amount of players in chosen player pool
 
 player Mystery = player(random);
-//Mystery.display_attributes();
+Mystery.display_attributes();
 
-string pguess = "Ja Morant";
+
+
+string pguess;
+cout << "Pleaase choose a player: " << endl;
+getline(cin, pguess);
 
 player guess = player(pguess);
 guess.display_attributes();
 
+cout << guess.position << endl;
+cout << Mystery.position << endl;
+
+if(guess.position == Mystery.position){
+	
+	cout << green << guess.position << endl;
+} else{ cout << normal << guess.position << endl;
+}
 
 return 0;
 };
