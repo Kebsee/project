@@ -6,6 +6,10 @@
 #include <sstream>
 #include <ctime>
 #include <iomanip>
+#include <set>
+#include <algorithm>
+
+#include <iterator>
 using namespace std;
 
 class Game {
@@ -190,23 +194,52 @@ class guess : public player {
           
 };
 
-class high_score {
+class Highscore {
     private:
     public:
-    void display_5(){};
+    void display_5(){
+            std::string word;
+            std::fstream file;
+            file.open("scores_sorted.txt");
+
+            int numOfLines = 0;
+            cout << endl;
+            cout << "Your top 5 best scores in descending order are : ";
+            cout << endl;
+
+            while(getline(file, word) && numOfLines < 5){
+                cout << word << endl;     
+                numOfLines++;
+            }
+            file.close();
+    };
+
     void add_score(int num_guesses){
         fstream myfile;
-        myfile.open("high_score.csv", fstream::app);
+        myfile.open("scores.txt", fstream::app);
         if (myfile.is_open()){
         myfile << num_guesses << endl;
         }
+        myfile.close();
     }
-    void sort_scores(){};
+
+    void sort_scores(){ 
+        ofstream G( "scores_sorted.txt" );
+        ifstream F( "scores.txt" );
+        vector<int> nums;
+        for ( int i; F >> i; ) nums.push_back( i );
+        sort( nums.begin(), nums.end() );
+        copy( nums.rbegin(), nums.rend(), ostream_iterator<int>{ G, "\n" } );
+
+        G.close();
+        F.close();
+    };
     
 };
 
 int main(){
 srand ( time(NULL) );
+Highscore yes;
 // initialise colours 
 
 char normal[]={0x1b,'[','0',';','3','9','m',0};
@@ -218,12 +251,17 @@ char green[]={0x1b,'[','0',';','3', '2','m',0};
 
 string rules;
 cout << "Welcome to NBA Wordle!" << endl;
-cout << "Press 1 to see the rules, otherwise press any key to play the game." << endl;
+cout << "Press 1 to see the rules, Press 2 to see high scores otherwise press any key to play the game." << endl;
 cin >> rules;
 
 // rules!
 if(rules == "1"){
     Game();
+}
+
+if(rules == "2"){
+yes.sort_scores();
+yes.display_5();
 }
 
 // Determine difficulty
@@ -373,8 +411,9 @@ if(rules == "1"){
         if(one.name == myst.name){
             win = true;
             cout << "Congratulations, You solved it in " << guess_so_far << " guesses!" << endl;
-            high_score yes;
+            
             yes.add_score(guess_so_far);
+            yes.sort_scores();
         }
 
        
