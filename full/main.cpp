@@ -206,14 +206,14 @@ cout << endl;
     
     }
 
-    // if(win == false){
+    if(win == false){
         cout << "GAME OVER! The mystery player was " << myst.name << "!" << endl;
         cout << "Unfortunately you have lost! Maybe try an easier difficulty or learn " << endl;
         cout << "more about NBA players!" << endl;
         cout << "Here was the mystery players attributes:" << endl;
         myst.display_attributes();
         
-    // }
+    }
 
     
 

@@ -21,19 +21,19 @@ class Highscore {
             std::fstream myfile;
 
             if (difficulty == "1"){
-            myfile.open("easy_scores.txt");
+            myfile.open("easy_scores_sorted.txt");
             cout << "Top 5 easy scores: ";
             cout << endl;
 
 
             }else if (difficulty == "2"){
-            myfile.open("medium_scores.txt");
+            myfile.open("medium_scores_sorted.txt");
             cout << "Top 5 medium scores: ";
             cout << endl;
 
 
             }else if (difficulty == "3"){
-            myfile.open("hard_scores.txt");
+            myfile.open("hard_scores_sorted.txt");
             cout << "Top 5 hard scores: ";
             cout << endl;
 
@@ -66,26 +66,36 @@ class Highscore {
     }
 
     void sort_scores(string difficulty){ 
-            auto is = ifstream{"hard_scores.txt"};
-            auto os = ofstream{"hard_scores_sorted.txt"};
-            
+        
             if (difficulty == "1"){
             auto is = ifstream{"easy_scores.txt"};
             auto os = ofstream{"easy_scores_sorted.txt"};
+            auto s = set<int, less<int>>{istream_iterator<int>{is}, istream_iterator<int>{}};
+            std::copy(s.begin(), s.end(), ostream_iterator<int>{os, "\n"});
+            is.close();
+            os.close();
+
             }else if (difficulty == "2"){
             auto is = ifstream{"medium_scores.txt"};
             auto os = ofstream{"medium_scores_sorted.txt"};
+            auto s = set<int, less<int>>{istream_iterator<int>{is}, istream_iterator<int>{}};
+            std::copy(s.begin(), s.end(), ostream_iterator<int>{os, "\n"});
+            is.close();
+            os.close();
+
             }else if (difficulty == "3"){
             auto is = ifstream{"hard_scores.txt"};
             auto os = ofstream{"hard_scores_sorted.txt"};
+            auto s = set<int, less<int>>{istream_iterator<int>{is}, istream_iterator<int>{}};
+            std::copy(s.begin(), s.end(), ostream_iterator<int>{os, "\n"});
+            is.close();
+            os.close();
             }
 
 
-        auto s = set<int, less<int>>{istream_iterator<int>{is}, istream_iterator<int>{}};
-        std::copy(s.begin(), s.end(), ostream_iterator<int>{os, "\n"});
+        
 
-        is.close();
-        os.close();
+        
 
     }
     
