@@ -190,6 +190,20 @@ class guess : public player {
           
 };
 
+class high_score {
+    private:
+    public:
+    void display_5(){};
+    void add_score(int num_guesses){
+        fstream myfile;
+        myfile.open("high_score.csv", fstream::app);
+        if (myfile.is_open()){
+        myfile << num_guesses << endl;
+        }
+    }
+    void sort_scores(){};
+    
+};
 
 int main(){
 srand ( time(NULL) );
@@ -359,18 +373,21 @@ if(rules == "1"){
         if(one.name == myst.name){
             win = true;
             cout << "Congratulations, You solved it in " << guess_so_far << " guesses!" << endl;
+            high_score yes;
+            yes.add_score(guess_so_far);
         }
-    
+
+       
     }
 
-    // if(win == false){
-        cout << "GAME OVER! The mystery player was " << myst.name << "!" << endl;
-        cout << "Unfortunately you have lost! Maybe try an easier difficulty or learn " << endl;
-        cout << "more about NBA players!" << endl;
-        cout << "Here was the mystery players attributes:" << endl;
-        myst.display_attributes();
-        
-    // }
+    if(win == false){
+            cout << "GAME OVER! The mystery player was " << myst.name << "!" << endl;
+            cout << "Unfortunately you have lost! Maybe try an easier difficulty or learn " << endl;
+            cout << "more about NBA players!" << endl;
+            cout << "Here was the mystery players attributes:" << endl;
+            myst.display_attributes();
+            
+        }
 
     
 
