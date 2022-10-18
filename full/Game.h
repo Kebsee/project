@@ -10,7 +10,7 @@ class Game {
 public:
     //Default contructor which is used when creating the game and outputs the rules
     Game(){
-        cout << "NBA wordle is a game where the aim is to guess a mystery NBA player in 5 guesses." << endl;
+        cout << "\nNBA wordle is a game where the aim is to guess a mystery NBA player in 5 guesses." << endl;
         cout << "Every guess you make will display that players attributes, and any corresponding matches" << endl;
         cout << "with the mystery players will show up in green. The ^ and v arrows will indicate whether" << endl;
         cout << "the number of the mystery players attribute is higher or lower. The terminal will display all " << endl;

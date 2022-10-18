@@ -34,8 +34,8 @@ int main(){
     // Initialise a rules string which will be used if a player wants to read the rules
     // or check the current high scores.
     string rules;
-    cout << "Welcome to NBA Wordle!" << endl;
-    cout << "Press 1 to see the rules, Press 2 to see high scores otherwise press any key to play the game." << endl;
+    cout << "**Welcome to NBA Wordle!**\n" << endl;
+    cout << "Press 1 to see the rules, Press 2 to see high scores, otherwise press any key to play the game." << endl;
     cin >> rules;
 
     // If statement which will output the rules from the Game class if selected!
@@ -218,7 +218,7 @@ int main(){
         // Checks to see if youve won
         if(one.name == myst.name){
             win = true;
-            cout << "**Congratulations YOU WON!**" << endl;
+            cout << "**Congratulations YOU WON!**\n" << endl;
             cout << " You solved it in " << guess_so_far << " guesses!" << endl;
             yes.add_score(guess_so_far,difficulty);
             yes.sort_scores("1");
@@ -232,10 +232,10 @@ int main(){
     // After looping through 5 guesses without name matching, this will execute
     // saying the game is over
     if(win == false){
-        cout << "**GAME OVER!**" << endl;
+        cout << "**GAME OVER!**\n" << endl;
         cout << "The mystery player was " << myst.name << "!" << endl;
         cout << "Unfortunately you have lost! Maybe try an easier difficulty or learn " << endl;
-        cout << "more about NBA players!" << endl;
+        cout << "more about NBA players!\n" << endl;
         cout << "Here was the mystery players attributes:" << endl;
         myst.display_attributes();
         
