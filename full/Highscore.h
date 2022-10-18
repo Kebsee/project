@@ -15,44 +15,81 @@ using namespace std;
 class Highscore {
     private:
     public:
-    void display_5(){
+    void display_5(string difficulty){
+        
             std::string word;
-            std::fstream file;
-            file.open("scores_sorted.txt");
+            std::fstream myfile;
+
+            if (difficulty == "1"){
+            myfile.open("easy_scores.txt");
+            cout << "Top 5 easy scores: ";
+            cout << endl;
+
+
+            }else if (difficulty == "2"){
+            myfile.open("medium_scores.txt");
+            cout << "Top 5 medium scores: ";
+            cout << endl;
+
+
+            }else if (difficulty == "3"){
+            myfile.open("hard_scores.txt");
+            cout << "Top 5 hard scores: ";
+            cout << endl;
+
+            }
 
             int numOfLines = 0;
-            cout << endl;
-            cout << "Your top 5 best scores in descending order are : ";
-            cout << endl;
+            
 
-            while(getline(file, word) && numOfLines < 5){
+            while(getline(myfile, word) && numOfLines < 5){
                 cout << word << endl;     
                 numOfLines++;
             }
-            file.close();
+            myfile.close();
     };
 
-    void add_score(int num_guesses){
+    void add_score(int num_guesses,string difficulty){
         fstream myfile;
-        myfile.open("scores.txt", fstream::app);
+        if (difficulty == "1"){
+            myfile.open("easy_scores.txt", fstream::app);
+            }else if (difficulty == "2"){
+            myfile.open("medium_scores.txt", fstream::app);
+            }else if (difficulty == "3"){
+            myfile.open("hard_scores.txt", fstream::app);
+            }
         if (myfile.is_open()){
         myfile << num_guesses << endl;
         }
         myfile.close();
+    
     }
 
-    void sort_scores(){ 
-        ofstream G( "scores_sorted.txt" );
-        ifstream F( "scores.txt" );
-        vector<int> nums;
-        for ( int i; F >> i; ) nums.push_back( i );
-        sort( nums.begin(), nums.end() );
-        copy( nums.rbegin(), nums.rend(), ostream_iterator<int>{ G, "\n" } );
+    void sort_scores(string difficulty){ 
+            auto is = ifstream{"hard_scores.txt"};
+            auto os = ofstream{"hard_scores_sorted.txt"};
+            
+            if (difficulty == "1"){
+            auto is = ifstream{"easy_scores.txt"};
+            auto os = ofstream{"easy_scores_sorted.txt"};
+            }else if (difficulty == "2"){
+            auto is = ifstream{"medium_scores.txt"};
+            auto os = ofstream{"medium_scores_sorted.txt"};
+            }else if (difficulty == "3"){
+            auto is = ifstream{"hard_scores.txt"};
+            auto os = ofstream{"hard_scores_sorted.txt"};
+            }
 
-        G.close();
-        F.close();
-    };
+
+        auto s = set<int, less<int>>{istream_iterator<int>{is}, istream_iterator<int>{}};
+        std::copy(s.begin(), s.end(), ostream_iterator<int>{os, "\n"});
+
+        is.close();
+        os.close();
+
+    }
     
+
 };
 
 #endif /* HIGHSCORE_H */

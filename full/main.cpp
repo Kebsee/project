@@ -18,6 +18,9 @@ using namespace std;
 int main(){
 srand ( time(NULL) );
 Highscore yes;
+yes.sort_scores("1");
+yes.sort_scores("2");
+yes.sort_scores("3");
 // initialise colours 
 
 char normal[]={0x1b,'[','0',';','3','9','m',0};
@@ -38,8 +41,13 @@ if(rules == "1"){
 }
 
 if(rules == "2"){
-yes.sort_scores();
-yes.display_5();
+yes.display_5("1");
+cout << endl;
+yes.display_5("2");
+cout << endl;
+yes.display_5("3");
+cout << endl;
+
 }
 
 // Determine difficulty
@@ -189,8 +197,10 @@ yes.display_5();
         if(one.name == myst.name){
             win = true;
             cout << "Congratulations, You solved it in " << guess_so_far << " guesses!" << endl;
-            yes.add_score(guess_so_far);
-            yes.sort_scores();
+            yes.add_score(guess_so_far,difficulty);
+            yes.sort_scores("1");
+            yes.sort_scores("2");
+            yes.sort_scores("3");
             
         }
     
