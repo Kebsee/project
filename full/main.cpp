@@ -11,12 +11,13 @@
 #include "Game.h"
 #include "Mystery.h"
 #include "Guess.h"
-//#include "Highscore.h"
+#include "Highscore.h"
 
 using namespace std;
 
 int main(){
 srand ( time(NULL) );
+Highscore yes;
 // initialise colours 
 
 char normal[]={0x1b,'[','0',';','3','9','m',0};
@@ -28,12 +29,17 @@ char green[]={0x1b,'[','0',';','3', '2','m',0};
 
 string rules;
 cout << "Welcome to NBA Wordle!" << endl;
-cout << "Press 1 to see the rules, otherwise press any key to play the game." << endl;
+cout << "Press 1 to see the rules, Press 2 to see high scores otherwise press any key to play the game." << endl;
 cin >> rules;
 
 // rules!
 if(rules == "1"){
     Game();
+}
+
+if(rules == "2"){
+yes.sort_scores();
+yes.display_5();
 }
 
 // Determine difficulty
@@ -183,6 +189,9 @@ if(rules == "1"){
         if(one.name == myst.name){
             win = true;
             cout << "Congratulations, You solved it in " << guess_so_far << " guesses!" << endl;
+            yes.add_score(guess_so_far);
+            yes.sort_scores();
+            
         }
     
     }
