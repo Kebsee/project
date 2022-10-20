@@ -65,8 +65,6 @@ public:
     else
         cout << "Could not open the file\n";
     return (content);
-        content.~vector();
-
     }
 
     // Declaring varibles

@@ -1,8 +1,7 @@
 all: main
 
 main: Game.h Guess.h Mystery.h Player.h Pool.h Highscore.h main.cpp
-	g++ -Wall Game.h Guess.h Mystery.h Player.h Pool.h Highscore.h main.cpp -o main.out
-	./main
+	g++ Game.h Guess.h Mystery.h Player.h Pool.h Highscore.h main.cpp -o main.out
 
 Game.o: Game.h
 	g++ -c Game.h
@@ -32,4 +31,4 @@ main.o: main.cpp
 
 
 clean:
-	rm -rf *o main Tests Fighter_Test Weapons_Test
+	rm -rf *o main 
